@@ -1,4 +1,5 @@
 var express = require("express");
+const exphbs = require('express-handlebars')
 var bodyParser = require("body-parser");
 var request = require("request");
 var logger = require("morgan");
@@ -10,15 +11,23 @@ var db = require("./models");
 var app = express();
 
 app.use(logger("dev"));
-
 app.use(bodyParser.urlencoded({ extended: true }));
+app.engine("handlebars", exphbs({ defaultLayout: "main" }))
+app.set("view engine", "handlebars")
+
+app.listen(PORT, function () {
+    console.log("App running on port " + PORT + "!");
+});
 
 mongoose.connect("mongodb://localhost/scraped-up");
 
 app.get("/", function (req, res) {
     db.Article.find({})
-        .then(function (result) {
-            res.json(result);
+        .populate("comments")
+        .then(function (storedResult) {
+            const items = { storedResult }
+            console.log(items);
+            res.render("index", items);
         })
         .catch(function (err) {
             res.json(err);
@@ -34,23 +43,50 @@ app.get("/api/data", function (req, res) {
             return console.error(error);
         } else {
             var $ = cheerio.load(html);
-            const results = [];
-            $(".headline").each(function (i, element) {
-                var headline = $(element).children().text();
-                var url = $(element).children().attr("href");
-                const summary = $(".excerpt").children().text();
-                results.push({
-                    headline: headline,
-                    url: url,
-                    summary: summary,
 
-                });
+            $("article").each(function (i, element) {
+                const headline = $(element).find(".headline").children().text();
+                const url = $(element).find(".headline").children().attr("href");
+                const summary = $(element).find(".excerpt").find("p").text();
+
+                if (headline && url && summary) {
+
+                    db.Article.create({
+                        headline: headline,
+                        url: url,
+                        summary: summary,
+                    }).then(function (storedResult) {
+                        return storedResult
+                    }).catch(function (err) {
+                        //if statement ignores "Duplicate entry error code: 11000".                
+                        if (err.code == "11000") {
+                            return
+                        } else {
+                            console.log(err.message);
+                        }
+                    });
+                }
             });
-          
-            res.json(results);
         }
-    })
+    }); res.send("Scrape Complete.")
 });
+
+app.post("/api/comment/:id", function (req, res) {
+    const id = req.params.id;
+    db.Comments.create(req.body)
+        .then(function (result) {
+            console.log(result);
+            return db.Article.findOneAndUpdate({ _id: id }, { $push: { comments: result._id } }, { new: true });
+        })
+        .then(function (result) {
+            res.json(result);
+        })
+        .catch(function (err) {
+            res.json(err);
+        });
+});
+
+
 
 app.post("/api/save", function (req, res) {
     db.Article.create(req.body)
@@ -63,6 +99,3 @@ app.post("/api/save", function (req, res) {
         })
 })
 
-app.listen(PORT, function () {
-    console.log("App running on port " + PORT + "!");
-});

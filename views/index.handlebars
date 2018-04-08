@@ -1,0 +1,13 @@
+<table>
+    <tbody class='this' id="that">
+        {{#each storedResult}}
+        <tr>
+            <td data="{{_id}}" href="{{url}}">
+                <a href="{{url}}">{{headline}}</a>
+            </td>
+            <td>{{summary}}</td>
+            <td>{{comments}}</td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
