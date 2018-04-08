@@ -13,19 +13,19 @@
   <!-- Material Design Bootstrap -->
   <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
   <!-- custom css -->
-  {{!-- <link rel="stylesheet" href="styles/styles.css"> --}}
+  <link type="text/html" rel="stylesheet" href="styles/styles.css" >
 
 </head>
 
 <body>
   <!-- header nav -->
   <header>
-	  <nav class="navbar fixed-top navbar-expand-lg">
+	  <nav class="navbar navbar-light fixed-top navbar-expand-lg" style="background-color: #e3f2fd;">
 		  <div class="container">
 			  <a class="navbar-brand" href="#"><strong>Scraper</strong></a>
-			  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menubar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				  <span class="navbar-toggler-icon"></span>
+			  <button class="navbar-toggler" type="static" data-toggle="collapse" data-target="#menubar" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"></button>				  
 			  </button>
+        <button id="scrapeButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#scrapeResult">Get!</button>
 		  </div>
 	  </nav>
   </header>
@@ -39,8 +39,9 @@
   <!-- Bootstrap core JavaScript -->
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
   <!-- MDB core JavaScript -->
-  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+  {{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script> --}}
 
   <!-- Custom JavaScript -->
+  <script src="./utilities.js"></script>
 </body>
 </html>

@@ -1,0 +1,13 @@
+.navbar {
+    opacity: 1;
+}
+
+.content {
+    position: relative;
+    top: 50px;
+    padding: 40px;
+  }
+
+  .btn-secondary {
+    background-color: #007bff!important
+  }
