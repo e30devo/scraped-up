@@ -19,7 +19,7 @@ module.exports = function (app) {
 
 
     app.get("/", function (req, res) {
-        db.Article.find().sort({ scrapedAt: 1 })
+        db.Article.find().sort({ scrapedAt: -1 })
             .populate("comments").exec
             (function (err, storedResult) {                
                 const message = { message: "There is no data here, click 'Get News!'" }
