@@ -1,0 +1,25 @@
+<div id="panel-saved" class="content" style="position: relative;
+    top: 75px;
+    padding: 30px;">
+    {{#each result}}
+    <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin: 15px">
+        
+            <a href="{{url}}" target="_blank" class="list-group">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{headline}} </h5>
+                </div>
+            </a>
+            <p class="mb-1">{{summary}}</p>        
+        
+        {{#each comments}}
+        <ul style="margin:2px">
+            <small>{{comments}} Posted: {{commentedAt}}</small>
+        </ul>
+        {{/each}}
+        <div class="md-form form-sm">
+            <input data="{{_id}}" type="text" id="inputSMEx" class="form-control form-control-sm">
+            <label for="inputSMEx">Add a Comment..</label>
+        </div>
+    </div>
+    {{/each}}
+</div>

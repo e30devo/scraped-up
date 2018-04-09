@@ -8,13 +8,14 @@ var ArticleSchema = new Schema({
     unique: true
   },
   summary: {
-      type: String,
-      unique: true,
+    type: String,    
   },
   url: {
-      type: String,
-    //   match: [/([--:\w?@%&+~#=]*\.[a-z]{2,4}\/{0,2})((?:[?&](?:\w+)=(?:\w+))+|[--:\w?@%&+~#=]+)?/g, "This is not a valid URL."],
-      unique: true,
+    type: String,
+  },
+  saved: {
+    type: Boolean,
+    default: false
   },
   scrapedAt: {
     type: Date,

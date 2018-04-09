@@ -1,33 +1,50 @@
-<div class="content" style="position: relative;
+<div id="panel-index" class="content" style="position: relative;
     top: 75px;
-    padding: 40px;">
-    <div class="list-group">
-        {{#each storedResult}}
-        <a href="{{url}}" data="{{_id}}" target="_blank" class="list-group-item list-group-item-action flex-column align-items-start">
-            <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{headline}}</h5>
-            </div>
+    padding: 30px;">
+    {{#each storedResult}}
+    <div class="list-group-item list-group-item-action flex-column align-items-start" style="margin: 15px">
+        <button style="position: relative;
+                top: 5px;
+                float:right;" id="{{_id}}" type="button" data="{{_id}}" class="saveButton btn btn-info" data-toggle="modal" data-target="#scrapeResult">Save This!</button>
+        <div style="width: 80%">
+            <a href="{{url}}" target="_blank" class="list-group">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{headline}} </h5>
+                </div>
+            </a>
             <p class="mb-1">{{summary}}</p>
-            <small>{{comments}}</small>
-            {{/each}}
-        </a>
+            
+        </div>
+        
+        {{#each comments}}
+        <ul style="margin:2px">
+            <small>{{comments}} Posted: {{commentedAt}}</small>
+        </ul>
+        {{/each}}
+        <div class="md-form form-sm">
+            <input data="{{_id}}" type="text" id="inputSMEx" class="form-control form-control-sm">
+            <label for="inputSMEx">Add a Comment..</label>
+        </div>
     </div>
+    {{/each}}
 </div>
 
-<div id="scrapeResult" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Now You've Done it..</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">        
-      </div>
-      <div class="modal-footer">
-        <button id="modalConfirm" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>        
-      </div>
+
+<div id="scrapeResult" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Now You've Done it..</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+            </div>
+            <div class="modal-footer">
+                <button id="modalConfirm" type="button" class="btn btn-primary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
-  </div>
 </div>
