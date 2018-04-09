@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <title>Scraped-Up</title>
+  <!-- Bootstrap core CSS -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Material Design Bootstrap -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css" rel="stylesheet">
+  <!-- custom css -->
+  <link type="text/html" rel="stylesheet" href="styles/styles.css">
+
+</head>
+
+<body>
+  <!-- header nav -->
+  <header>
+    <nav class="navbar navbar-light fixed-top navbar-expand-lg" style="background-color: #e3f2fd;">
+      <div class="container">
+        <span class="navbar-brand" href="#">
+          <strong style="font-style:oblique">Scraped-Up</strong>
+        </span>
+        <button class="navbar-toggler" type="static" data-toggle="collapse" data-target="#menubar" aria-controls="navbarSupportedContent"
+          aria-expanded="false" aria-label="Toggle navigation"></button>
+        </button>
+
+        <button id="scrapeButton" type="button" class="btn btn-primary" data-toggle="modal" data-target="#scrapeResult" style="position: relative; right: -352px;"
+          }>Get News!</button>
+          <a href="http://localhost:3000/saved">
+        <button id="savedArticles" type="button" class="btn btn-blue-grey">Saved..</button></a>
+      </div>
+    </nav>
+  </header>
+
+ {{{ body }}}
+
+  <!--footer-->
+
+  <!-- JQuery -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <!-- Bootstrap core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <!-- MDB core JavaScript -->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/js/mdb.min.js"></script>
+
+  <!-- Custom JavaScript -->
+  <script src="./utilities.js"></script>
+</body>
+
+</html>
