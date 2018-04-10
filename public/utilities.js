@@ -1,7 +1,7 @@
 function getScrape() {
     $.ajax({
         method: "GET",
-        url: "http://localhost:3000/api/data"
+        url: (window.location.origin || 'http://localhost:3000') + "/api/data"
     }).then(function (result) {
         $(".modal-body").html(result);
     })
@@ -21,7 +21,7 @@ $(document).on("keyup click", "#inputSMEx", function (event) {
         const _id = $(this).attr("data")        
         $.ajax({
             method: "POST",
-            url: `http://localhost:3000/api/comment/${_id}`,
+            url: (window.location.origin || 'http://localhost:3000')  + `/api/comment/${_id}`,
             data: {
                 comments: `"${comment}"`
             }
@@ -37,7 +37,7 @@ $(document).on("click", ".saveButton", function () {
     const button = $(this).attr("id")    
     $.ajax({
         method: "POST",
-        url: `http://localhost:3000/api/save/${_id}`,
+        url: (window.location.origin || 'http://localhost:3000') + `/api/save/${_id}`,
     }).then(function (result) {
         console.log(result);
         $(".modal-body").html(result);
